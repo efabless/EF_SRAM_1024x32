@@ -1,0 +1,24 @@
+---
+info:
+  name: EF_SRAM_1024x32
+  description: Commercial 1024x3 SRAM
+  repo: https://github.com/efabless/EF_SRAM_1024x32.git
+  owner: Efabless Corp.
+  license:
+  author: Efabless Corp.
+  email: purchase_ip@efabless.com
+  version: v1.0.0
+  date: 08-05-2024
+  category: digital
+  tags:
+    - SRAM
+    - memory
+  bus:
+    - generic
+  type: hard
+  status: verified
+  width: 387.87
+  height: 303.315
+  technology: sky130
+  digital_supply_voltage: 1.8
+  analog_supply_voltage: n/a
