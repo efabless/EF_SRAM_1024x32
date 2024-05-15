@@ -46,14 +46,14 @@ module EF_SRAM_1024x32 (DO, ScanOutCC, AD, BEN, CLKin, DI, EN, R_WB, ScanInCC, S
     input vgnd;
     input vpwrm;
 
-`ifdef EFSRAM_PA_SIM
+`ifdef EF_SRAM_PA_SIM
   inout vpwra;
 `else
   input vpwra;
 `endif
 
 
-`ifdef EFSRAM_PA_SIM
+`ifdef EF_SRAM_PA_SIM
   inout vpwrp;
 `else
   input vpwrp;

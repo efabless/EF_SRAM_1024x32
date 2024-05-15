@@ -68,14 +68,14 @@ vpwrpc
     input vgnd;
     input vpwrm;
 
-`ifdef EFSRAM_PA_SIM
+`ifdef EF_SRAM_PA_SIM
   inout vpwra;
 `else
   input vpwra;
 `endif
 
 
-`ifdef EFSRAM_PA_SIM
+`ifdef EF_SRAM_PA_SIM
   inout vpwrp;
 `else
   input vpwrp;
@@ -150,7 +150,7 @@ reg dis_err_msgs;
 initial
 begin
 dis_err_msgs = 1'b1;
-`ifdef EFSRAM_DIS_ERR_MSGS
+`ifdef EF_SRAM_DIS_ERR_MSGS
 `else
 #1;
 dis_err_msgs = 1'b0;
@@ -313,7 +313,7 @@ always @(undefined_mode, msg_undef_process_event) begin
       msg_undef_is_pending = 1'b0;
       if (!dis_err_msgs) begin
         
-        $display("===NOTE=== (efsram) : Undefined state in EFSRAM_00128x032_008_18: vpwra= %b vpwrp=%b TM=%b SM=%b WLOFF=%b in instance %m at time=%t", vpwrac, vpwrpc, TM, SM, WLOFF, $time) ;
+        $display("===NOTE=== (efsram) : Undefined state in EF_SRAM_00128x032_008_18: vpwra= %b vpwrp=%b TM=%b SM=%b WLOFF=%b in instance %m at time=%t", vpwrac, vpwrpc, TM, SM, WLOFF, $time) ;
       end
     end
   end

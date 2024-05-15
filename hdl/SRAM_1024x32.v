@@ -77,7 +77,7 @@ ram_controller #(.AW(10)) ram_controller(
     .CLKin(CLKin)
 );
 
-EFSRAM_1024x32_wrapper SRAM_0 (
+EF_SRAM_1024x32_wrapper SRAM_0 (
 `ifdef USE_POWER_PINS
     .vgnd(VGND),
     .vnb(VGND),

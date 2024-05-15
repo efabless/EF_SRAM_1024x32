@@ -153,7 +153,7 @@ module EF_SRAM_1024x32
      assign vgnd = 1'b0 ;
 `endif
 
-`ifdef EFSRAM_NO_POWER_SWITCH
+`ifdef EF_SRAM_NO_POWER_SWITCH
 `else
 
 `ifdef USE_PG_PIN

@@ -71,14 +71,14 @@ vpwrpc
     input vgnd;
     input vpwrm;
 
-`ifdef EFSRAM_PA_SIM
+`ifdef EF_SRAM_PA_SIM
   inout vpwra;
 `else
   input vpwra;
 `endif
 
 
-`ifdef EFSRAM_PA_SIM
+`ifdef EF_SRAM_PA_SIM
   inout vpwrp;
 `else
   input vpwrp;
