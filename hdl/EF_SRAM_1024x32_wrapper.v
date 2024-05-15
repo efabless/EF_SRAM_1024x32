@@ -32,7 +32,7 @@
     `define USE_PG_PIN
 `endif
 
-module EFSRAM_1024x32_wrapper (DO, ScanOutCC, AD, BEN, CLKin, DI, EN, R_WB, ScanInCC, ScanInDL, ScanInDR, SM, TM, WLBI, WLOFF,
+module EF_SRAM_1024x32_wrapper (DO, ScanOutCC, AD, BEN, CLKin, DI, EN, R_WB, ScanInCC, ScanInDL, ScanInDR, SM, TM, WLBI, WLOFF,
 `ifdef USE_PG_PIN
 vgnd, vnb, vpb, vpwra,
 `endif
@@ -57,7 +57,7 @@ vpwrpc
     input EN;
     input R_WB;
     input CLKin;
-    input WLBI; // cdt116965: remove wlbi functionality from model completely
+    input WLBI;
     input WLOFF;
     input TM;
     input SM;
@@ -87,7 +87,6 @@ vpwrpc
     input vnb;
     input vpb;
 `else
-// dlz 03/04/2012 added supply0, supply1 as required by cgd
     supply0 vgnd;
     supply0 vnb;
     supply1 vpwra;
