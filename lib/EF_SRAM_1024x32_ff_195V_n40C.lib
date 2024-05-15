@@ -168,7 +168,7 @@ library (EF_SRAM_1024x32_ff_195V_n40C) {
   }
 
 
-    cell (EFSRAM_01024x032_008_18) {
+    cell (EF_SRAM_1024x32) {
         switch_cell_type    : coarse_grain;
 
         area                :   117646.789;
