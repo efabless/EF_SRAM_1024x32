@@ -168,7 +168,7 @@ library (EF_SRAM_1024x32_wrapper_tt_180V_25C) {
   }
 
 
-    cell (EFSRAM_1024x32_wrapper) {
+    cell (EF_SRAM_1024x32_wrapper) {
         switch_cell_type    : coarse_grain;
 
         area                :   117646.789;
