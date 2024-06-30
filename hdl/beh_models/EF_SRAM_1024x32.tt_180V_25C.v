@@ -29,7 +29,7 @@
 
 `celldefine
 
-module EF_SRAM_1024x32
+module EF_SRAM_1024x32_macro
 (DO, ScanOutCC, AD, BEN, CLKin, DI, EN, R_WB, ScanInCC, ScanInDL, ScanInDR, SM, TM, WLBI, WLOFF,
 `ifdef USE_PG_PIN
 vgnd, vnb, vpb, vpwra,
@@ -1360,7 +1360,7 @@ always @ (normal_mode or DIreg or R_WBreg or WL_Enable or ADreg or BENreg or WLO
     end 
     else if (is_AD_within_range(getAD(ADreg)) == 0) begin
       if (!dis_err_msgs) begin
-		    $display("===ERROR=== (efsram) : Write AD=%h OutOfRange in memory EF_SRAM_1024x32 in instance %m at time=%t\n", ADreg, $time);
+		    $display("===ERROR=== (efsram) : Write AD=%h OutOfRange in memory EF_SRAM_1024x32_macro in instance %m at time=%t\n", ADreg, $time);
       end  
     end
     else if (inputs_x_reg === 1'b1) begin
@@ -1420,7 +1420,7 @@ begin: read_data_block
     end 
     else if (is_AD_within_range(getAD(ADreg)) == 0) begin
       if (!dis_err_msgs) begin
-        $display("===ERROR=== (efsram) : Read AD=%h Out Of Range in memory EF_SRAM_1024x32 in instance %m at time=%t\n", ADreg, $time);
+        $display("===ERROR=== (efsram) : Read AD=%h Out Of Range in memory EF_SRAM_1024x32_macro in instance %m at time=%t\n", ADreg, $time);
       end  
       
     end

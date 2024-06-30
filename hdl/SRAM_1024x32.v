@@ -83,7 +83,7 @@ EF_SRAM_1024x32_wrapper SRAM_0 (
     .vnb(VGND),
     .vpb(VPWR),
     .vpwra(VPWR),
-    .vpwrm(VPWR),
+    .vpwrm(),
     .vpwrp(VPWR),
 `endif
     .vpwrac(1'b1),

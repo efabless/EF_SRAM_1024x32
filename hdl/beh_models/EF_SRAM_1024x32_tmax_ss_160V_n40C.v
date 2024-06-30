@@ -52,7 +52,7 @@ module EF_SRAM_1024x32_tmx
 
 `else
 
-module EF_SRAM_1024x32
+module EF_SRAM_1024x32_macro
  (DO, ScanOutCC, AD, BEN, CLKin, DI, EN, R_WB, ScanInCC, ScanInDL, ScanInDR, SM, TM, WLBI, WLOFF 
 `ifdef USE_PG_PIN
 , vgnd, vnb, vpb, vpwra
