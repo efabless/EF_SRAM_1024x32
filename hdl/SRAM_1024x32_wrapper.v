@@ -29,7 +29,7 @@
     `define USE_PG_PIN
 `endif
 
-module SRAM_1024x32 (
+module SRAM_1024x32_wrapper (
 `ifdef USE_POWER_PINS
     inout VPWR,
     inout VGND,
@@ -77,7 +77,7 @@ ram_controller #(.AW(10)) ram_controller(
     .CLKin(CLKin)
 );
 
-EF_SRAM_1024x32_wrapper SRAM_0 (
+EF_SRAM_1024x32 SRAM_0 (
 `ifdef USE_POWER_PINS
     .vgnd(VGND),
     .vnb(VGND),
