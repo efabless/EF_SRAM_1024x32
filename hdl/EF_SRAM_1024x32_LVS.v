@@ -96,7 +96,7 @@ vpwrpc
 `endif
 
 
-EF_SRAM_1024x32 EF_SRAM_1024x32_inst
+EF_SRAM_1024x32_macro EF_SRAM_1024x32_inst
 (
     .DO<31>(DO[31]),
     .DO<30>(DO[30]),
