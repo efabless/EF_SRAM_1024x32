@@ -25,17 +25,8 @@
 //  If you have a separate agreement with Efabless pertaining to the use of this software
 //  then that agreement shall control.
 
-`ifdef USE_POWER_PINS
-    `define USE_PG_PIN
-`endif
-
-module SRAM_1024x32_wrapper (
-`ifdef USE_POWER_PINS
-    inout VPWR,
-    inout VGND,
-`endif
-
-    // Wishbone Slave ports (WB MI A)
+module ram_wb_controller #(parameter AW = 10) (
+    // wishbone
     input wb_clk_i,
     input wb_rst_i,
     input wbs_stb_i,
@@ -44,67 +35,35 @@ module SRAM_1024x32_wrapper (
     input [3:0] wbs_sel_i,
     input [31:0] wbs_dat_i,
     input [31:0] wbs_adr_i,
-    output wbs_ack_o,
-    output [31:0] wbs_dat_o
+    output reg wbs_ack_o,
+    output [31:0] wbs_dat_o,
+    // sram
+    input  [31:0] DO,
+    output [31:0] DI,
+    output [31:0] BEN,
+    output [AW-1:0] AD,
+    output EN,
+    output R_WB,
+    output CLKin
 );
+    // inputs to ram
+    assign EN = wbs_stb_i & wbs_cyc_i;
+    assign R_WB = ~wbs_we_i;
+    assign CLKin = wb_clk_i;
+    assign AD = wbs_adr_i[AW-1:0];
+    assign DI = wbs_dat_i;
+    assign BEN = {{8{wbs_sel_i[3]}}, {8{wbs_sel_i[2]}}, {8{wbs_sel_i[1]}}, {8{wbs_sel_i[0]}}};
 
-// ram ports
-wire [31:0] DO;
-wire [31:0] DI;
-wire [31:0] BEN;
-wire [9:0] AD;
-wire EN;
-wire R_WB;
-wire CLKin;
+    // outputs from ram
+    assign wbs_dat_o = DO;
+    always @(posedge wb_clk_i or posedge wb_rst_i) begin
+        if (wb_rst_i)
+            wbs_ack_o <= 0;
 
-ram_controller #(.AW(10)) ram_controller(
-    .wb_clk_i(wb_clk_i),
-    .wb_rst_i(wb_rst_i),
-    .wbs_stb_i(wbs_stb_i),
-    .wbs_cyc_i(wbs_cyc_i),
-    .wbs_we_i(wbs_we_i),
-    .wbs_sel_i(wbs_sel_i),
-    .wbs_dat_i(wbs_dat_i),
-    .wbs_adr_i(wbs_adr_i),
-    .wbs_ack_o(wbs_ack_o),
-    .wbs_dat_o(wbs_dat_o),
-    .DO(DO),
-    .DI(DI),
-    .BEN(BEN),
-    .AD(AD),
-    .EN(EN),
-    .R_WB(R_WB),
-    .CLKin(CLKin)
-);
-
-EF_SRAM_1024x32 SRAM_0 (
-`ifdef USE_POWER_PINS
-    .vgnd(VGND),
-    .vnb(VGND),
-    .vpb(VPWR),
-    .vpwra(VPWR),
-    .vpwrm(),
-    .vpwrp(VPWR),
-`endif
-    .vpwrac(1'b1),
-    .vpwrpc(1'b1),
-    // access ports
-    .DO(DO),
-    .DI(DI),
-    .BEN(BEN),
-    .AD(AD),
-    .EN(EN),
-    .R_WB(R_WB),
-    .CLKin(CLKin),
-    // scan ports
-    .TM(1'b0),
-    .SM(1'b0),
-    .ScanInCC(1'b0),
-    .ScanInDL(1'b0),
-    .ScanInDR(1'b0),
-    .ScanOutCC(),
-    .WLBI(1'b0),
-    .WLOFF(1'b0)
-);
+        else if (EN & ~wbs_ack_o)  // ausme it took 1 cycle to read or write
+            wbs_ack_o <= 1'b1;
+        else
+            wbs_ack_o <= 1'b0;
+    end
 
 endmodule
