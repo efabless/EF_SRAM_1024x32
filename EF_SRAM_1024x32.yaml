@@ -15,7 +15,7 @@ info:
     - memory
   bus:
     - WB
-    - AHB
+    - AHBL
   type: hard
   status: verified
   width: 387.87
