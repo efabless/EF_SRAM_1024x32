@@ -74,6 +74,7 @@ class sram_base_test(base_test):
         BUS_TYPE = cocotb.plusargs["BUS_TYPE"]
         super().__init__(name, bus_type=BUS_TYPE, parent=parent)
         self.tag = name
+        self.memory_size = 0x400
 
     def build_phase(self, phase):
         super().build_phase(phase)
@@ -104,7 +105,7 @@ class sram_corners_test(sram_base_test):
         phase.raise_objection(self, f"{self.__class__.__name__} OBJECTED")
         # TODO: conntect sequence with sequencer here
         # for example if you need to run the 2 sequence sequentially
-        bus_seq = sram_corners_seq("sram_corners_seq", mem_size=0x400)
+        bus_seq = sram_corners_seq("sram_corners_seq", mem_size=self.memory_size)
         await bus_seq.start(self.bus_sqr)
         phase.drop_objection(self, f"{self.__class__.__name__} drop objection")
 
@@ -122,7 +123,7 @@ class sram_write_read_test(sram_base_test):
         phase.raise_objection(self, f"{self.__class__.__name__} OBJECTED")
         # TODO: conntect sequence with sequencer here
         # for example if you need to run the 2 sequence sequentially
-        bus_seq = sram_write_read_seq("sram_corners_seq", mem_size=0x400)
+        bus_seq = sram_write_read_seq("sram_corners_seq", mem_size=self.memory_size)
         await bus_seq.start(self.bus_sqr)
         phase.drop_objection(self, f"{self.__class__.__name__} drop objection")
 
