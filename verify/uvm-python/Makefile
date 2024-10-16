@@ -15,7 +15,7 @@ else ifeq ($(BUS_TYPE),WISHBONE)
 endif
 SKIP_SYNTHESIS = 1
 # RTL_MACROS ?= "-DSKIP_WAVE_DUMP"
-YAML_FILE = $(PWD)/../../EF_SRAM_1024X32.yaml # TODO: update yaml file path
+YAML_FILE = $(PWD)/../../EF_SRAM_1024x32.yaml # TODO: update yaml file path
 MAKEFLAGS += --no-print-directory
 
 # List of tests
