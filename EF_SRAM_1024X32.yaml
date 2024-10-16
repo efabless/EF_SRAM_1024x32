@@ -14,7 +14,8 @@ info:
     - SRAM
     - memory
   bus:
-    - generic
+    - WB
+    - AHB
   type: hard
   status: verified
   width: 387.87
@@ -22,3 +23,4 @@ info:
   technology: sky130
   digital_supply_voltage: 1.8
   analog_supply_voltage: n/a
+registers: []
