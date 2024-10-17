@@ -24,3 +24,4 @@ jobs:
       name: ${{ github.event.repository.name }}
       buses: ${{ needs.Extract-Buses.outputs.buses }}
       is-ip: true
+      skip-gl: yes
