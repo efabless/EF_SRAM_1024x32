@@ -38,19 +38,13 @@ class sram_write_read_seq(sram_bus_base_seq):
                 await self.read_from_mem(address=address, size=size)
 
     def rand_addr_size(self):
-        BUS_TYPE = cocotb.plusargs["BUS_TYPE"]
-        if BUS_TYPE == "AHB":
-            address = random.randint(0, (self.mem_size - 1) * 4)
-            if address % 4 == 0:
-                size = random.choice((bus_item.WORD_ACCESS, bus_item.HALF_WORD_ACCESS, bus_item.BYTE_ACCESS))
-            elif address % 2 == 0:
-                size = random.choice((bus_item.HALF_WORD_ACCESS, bus_item.BYTE_ACCESS))
-            else:
-                size = bus_item.BYTE_ACCESS
-        else: # sizes are fixed for APB and WB
-            address = random.randint(0, self.mem_size - 1) << 2
-            size = bus_item.WORD_ACCESS
-            
+        address = random.randint(0, (self.mem_size - 1) * 4)
+        if address % 4 == 0:
+            size = random.choice((bus_item.WORD_ACCESS, bus_item.HALF_WORD_ACCESS, bus_item.BYTE_ACCESS))
+        elif address % 2 == 0:
+            size = random.choice((bus_item.HALF_WORD_ACCESS, bus_item.BYTE_ACCESS))
+        else:
+            size = bus_item.BYTE_ACCESS
         return address, size
 
 uvm_object_utils(sram_write_read_seq)

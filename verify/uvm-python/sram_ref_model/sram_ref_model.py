@@ -55,19 +55,9 @@ class sram_ref_model(ref_model):
             if tr.size == bus_item.WORD_ACCESS:
                 self.mem.write_word(tr.addr, tr.data)
             elif tr.size == bus_item.HALF_WORD_ACCESS:
-                if tr.addr % 4 == 0:
-                    self.mem.write_halfword(tr.addr, tr.data & 0xFFFF)
-                else:
-                    self.mem.write_halfword(tr.addr, tr.data >> 16)
+                self.mem.write_halfword(tr.addr, tr.data & 0xFFFF)
             elif tr.size == bus_item.BYTE_ACCESS:
-                if tr.addr % 4 == 0:
-                    self.mem.write_byte(tr.addr, tr.data & 0xFF)
-                elif tr.addr % 4 == 1:
-                    self.mem.write_byte(tr.addr, (tr.data >> 8) & 0xFF)
-                elif tr.addr % 4 == 2:
-                    self.mem.write_byte(tr.addr, (tr.data >> 16) & 0xFF)
-                elif tr.addr % 4 == 3:
-                    self.mem.write_byte(tr.addr, (tr.data >> 24) & 0xFF)
+                self.mem.write_byte(tr.addr, tr.data & 0xFF)
             self.bus_bus_export.write(tr)  # this is output to the scoreboard
         elif tr.kind == bus_item.READ:
             td = tr.do_clone()
