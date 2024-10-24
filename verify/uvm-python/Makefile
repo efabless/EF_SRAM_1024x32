@@ -19,7 +19,7 @@ YAML_FILE = $(PWD)/../../EF_SRAM_1024x32.yaml # TODO: update yaml file path
 MAKEFLAGS += --no-print-directory
 
 # List of tests
-TESTS := sram_corners_test sram_write_read_test
+TESTS := sram_corners_test sram_write_read_test sram_write_read_all_test
 
 # Variable for tag - set this as required
 SIM_TAG ?= default_tag
