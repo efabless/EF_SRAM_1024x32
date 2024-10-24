@@ -20,6 +20,7 @@ from EF_UVM.base_test import base_test
 from sram_seq_lib.sram_corners_seq import sram_corners_seq
 from sram_seq_lib.sram_write_read_seq import sram_write_read_seq
 from sram_seq_lib.sram_ip_seq import sram_ip_seq
+from sram_seq_lib.sram_write_read_all_mem_seq import sram_write_read_all_mem_seq
 
 # override classes
 from EF_UVM.ip_env.ip_agent.ip_driver import ip_driver
@@ -129,3 +130,20 @@ class sram_write_read_test(sram_base_test):
 
 
 uvm_component_utils(sram_write_read_test)
+
+class sram_write_read_all_test(sram_base_test):
+    def __init__(self, name="sram__first_test", parent=None):
+        super().__init__(name, parent=parent)
+        self.tag = name
+
+    async def main_phase(self, phase):
+        uvm_info(self.tag, f"Starting test {self.__class__.__name__}", UVM_LOW)
+        phase.raise_objection(self, f"{self.__class__.__name__} OBJECTED")
+        # TODO: conntect sequence with sequencer here
+        # for example if you need to run the 2 sequence sequentially
+        bus_seq = sram_write_read_all_mem_seq("sram_corners_seq", mem_size=self.memory_size)
+        await bus_seq.start(self.bus_sqr)
+        phase.drop_objection(self, f"{self.__class__.__name__} drop objection")
+
+
+uvm_component_utils(sram_write_read_all_test)
