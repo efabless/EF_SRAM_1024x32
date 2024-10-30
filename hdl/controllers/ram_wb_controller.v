@@ -41,7 +41,7 @@ module ram_wb_controller #(parameter AW = 12) (
     input  [31:0] DO,
     output [31:0] DI,
     output [31:0] BEN,
-    output [AW-1:0] AD,
+    output [AW-3:0] AD,
     output EN,
     output R_WB,
     output CLKin
