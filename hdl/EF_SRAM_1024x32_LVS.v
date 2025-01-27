@@ -214,7 +214,7 @@ EF_SRAM_1024x32_macro EF_SRAM_1024x32_inst
     .SM(SM),
     .TM(TM),
     .WLBI(WLBI),
-    .WLOFF(vgnd),
+    .WLOFF(WLOFF),
     `ifdef USE_PG_PIN
     .vgnd(vgnd),
     .vnb(vnb),
