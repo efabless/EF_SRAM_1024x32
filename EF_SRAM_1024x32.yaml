@@ -7,8 +7,8 @@ info:
   license:
   author: Efabless Corp.
   email: purchase_ip@efabless.com
-  version: v1.2.1
-  date: 08-05-2024
+  version: v2.0.0
+  date: 28-01-2025
   category: digital
   tags:
     - SRAM
