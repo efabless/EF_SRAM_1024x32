@@ -27,8 +27,6 @@
 
 `timescale 1 ns / 1 ps
 
-`celldefine
-
 module EF_SRAM_1024x32_macro
 (DO, ScanOutCC, AD, BEN, CLKin, DI, EN, R_WB, ScanInCC, ScanInDL, ScanInDR, SM, TM, WLBI, WLOFF,
 `ifdef USE_PG_PIN
@@ -1520,5 +1518,3 @@ task write_x_in_whole_memory;
 endtask
 
 endmodule
-
-`endcelldefine
